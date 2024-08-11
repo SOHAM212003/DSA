@@ -5,7 +5,7 @@
 using namespace std;
 
 //Brute force or without using STL
-void Rotate(vector<int>&arr,int k, int n){
+void Rotate(int arr[],int k, int n){
     
     int temp[k];
     for (int i = 0; i < k; i++)
@@ -26,30 +26,13 @@ void Rotate(vector<int>&arr,int k, int n){
     }
     
 }
-//using stl
-void RotateSTL(vector<int>&arr, int k) {
-    k=k%arr.size();
 
-    // Rotate the first k elements
-    reverse(arr.begin(),arr.begin()+(arr.size()-k));
-    
-    // Rotate the remaining elements
-    reverse(arr.begin()+(arr.size()-k),arr.end());
-    
-    // Rotate the entire array
-    reverse(arr.begin(),arr.end());
-
-    // Print the rotated array
-    for (int i = 0; i < arr.size(); i++) {
-        cout << arr[i] << " ";
-    }
-}
 
 int main(){
 int n;
 cout<<"Enter number of elements: ";
 cin>>n;
-vector<int>arr(n);
+int arr[n];
 for(int i=0;i<n;i++)
 {
     cin>>arr[i];
@@ -57,10 +40,8 @@ for(int i=0;i<n;i++)
 int k;
 cout<<"Enter number of position to be rotated: ";
 cin>>k;
-cout<<"Final array Without STL: "<< endl;
+cout<<"Final array: "<< endl;
 Rotate(arr,k,n);
 cout<<endl;
-cout<<"Final array using STL: "<<endl;
-RotateSTL(arr,k);
 return 0;
 }
