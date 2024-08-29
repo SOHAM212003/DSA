@@ -1,27 +1,25 @@
 #include <iostream>
-#include <vector>
 #include<bits/stdc++.h>
 using namespace std;
 
-int maxValue(vector<int>& arr) {
-    int max_val = INT_MIN;  // Start with the smallest possible integer value
-    int n = arr.size();
+vector<int> twoSum(vector<int>& nums, int target) {
+        unordered_map<int, int> numMap;
+        int n = nums.size();
 
-    for (int i = 0; i < n; i++) {
-        int sum = 0;
-        for (int j = i; j < n; j++) {
-            sum += arr[j];
-            double avg = static_cast<double>(sum) / (j - i + 1);
-            int val = static_cast<int>(sum / avg);
-            max_val = max(max_val, val);
+        for (int i = 0; i < n; i++) {
+            int Ans = target - nums[i];
+            if (numMap.count(Ans)) {
+                return {numMap[Ans], i};
+            }
+            numMap[nums[i]] = i;
         }
+
+        return {}; // No solution found
     }
 
-    return max_val;
-}
-
-int main() {
-    vector<int> arr = {5, 5, 6, -1, -2};
-    cout << maxValue(arr) << endl;  // Expected output: 80
-    return 0;
+int main(){
+    vector<int> nums = {2, 7, 11, 15};
+    int target = 9;
+    vector<int> result = twoSum(nums, target);
+    cout << "[" << result[0] << ", " << result[1] << "]" <<endl;
 }
